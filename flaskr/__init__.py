@@ -3,7 +3,7 @@ import os
 from flask import Flask
 
 
-def create_website(test_config=None):
+def create_app(test_config=None):
     resource_board = Flask(__name__, instance_relative_config=True)
     resource_board.config.from_mapping(
         SECRET_KEY='develop',
