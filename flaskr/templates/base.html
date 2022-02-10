@@ -26,3 +26,24 @@
 <!-- Latest compiled JavaScript -->
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<title>{% block title %}{% endblock %} - Flaskr</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<nav>
+  <div id="logo"> 
+    <img src="/static/logo.png"> 
+  </div> 
+  <h1></h1>
+  <ul>
+      <li><a href="{{ url_for('auth.admin') }}">Register</a>
+    
+  </ul>
+</nav>
+<section class="content">
+  <header>
+    {% block header %}{% endblock %}
+  </header>
+  {% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
+  {% block content %}{% endblock %}
+</section>
