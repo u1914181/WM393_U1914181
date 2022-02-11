@@ -7,6 +7,8 @@ from flaskr.db import get_db
 from werkzeug.utils import secure_filename
 import os
 
+bp = Blueprint('blog', __name__)
+
 
 @bp.route('/')
 def index():
