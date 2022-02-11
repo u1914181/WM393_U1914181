@@ -34,7 +34,13 @@
 <div class="btn text-center">
   <h1>Good Morning {{g.user['username']}}, Welcome to the Resource Board</h1>
 </div>
-
+<div class="btn text-center">
+  <p>
+    <a href="create"><button type="button" class="swd-button">Create Board</button></a>
+    <a href="edit"><button type="button" class="swd-button">Edit Board</button></a>
+    <a href="create"><button type="button" class="swd-button">Manage Board</button></a>
+</p>
+</div>
 </form>
 
 {% for post in posts %}
