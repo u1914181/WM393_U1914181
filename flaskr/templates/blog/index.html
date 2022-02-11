@@ -56,6 +56,8 @@
       </header>
       <a class="action" href="{{ url_for('blog.download_file', filename=post['body']) }}">{{ post['body'] }}</a>
       <p class="about">Information about resource:  {{ post['body2'] }}</p>
+      <p class="about">Module:  {{ post['module'] }}</p>
+      <p class="about">Topic:  {{ post['topic'] }}</p>
     </article>
     {% if not loop.last %}
       <hr>
