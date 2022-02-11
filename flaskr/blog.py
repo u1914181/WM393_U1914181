@@ -27,7 +27,7 @@ def edit_board():
 def index():
     db = get_db()
     posts = db.execute(
-        'SELECT p.id, title, body, body2, module, created, author_id, username'
+        'SELECT p.id, title, body, body2, module, topic, created, author_id, username'
         ' FROM post p JOIN user u ON p.author_id = u.id'
         ' ORDER BY created DESC'
     ).fetchall()
@@ -38,7 +38,7 @@ def index():
 def student_index():
     db = get_db()
     posts = db.execute(
-        'SELECT p.id, title, body, body2, module, created, author_id, username'
+        'SELECT p.id, title, body, body2, module, topic, created, author_id, username'
         ' FROM post p JOIN user u ON p.author_id = u.id'
         ' ORDER BY created DESC'
     ).fetchall()
@@ -85,9 +85,9 @@ def create():
         else:
             db = get_db()
             db.execute(
-                'INSERT INTO post (title, body, author_id, body2)'
-                ' VALUES (?, ?, ?, ?)',
-                (title, filename, g.user['id'], body)
+                'INSERT INTO post (title, body, author_id, body2, module, topic)'
+                ' VALUES (?, ?, ?, ?, ?, ?)',
+                (title, filename, g.user['id'], body, rating, topic)
             )
             db.commit()
             db = get_db()
