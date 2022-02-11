@@ -13,6 +13,16 @@ def blank_board():
     return 'This board has been completed by another member of the team and therefore is not included in this project.'
 
 
+@bp.route('/createboard')
+def create_board():
+    return 'Resource board has been created already. Please contact U1914181 to create another board.'
+
+
+@bp.route('/edit')
+def edit_board():
+    return 'Board can be edited by: --> Editing resource board uploads using the edit button found on the main board. --> Users can be added providing the users knows the administrative logins.'
+
+
 @bp.route('/')
 def index():
     db = get_db()
