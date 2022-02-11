@@ -26,11 +26,11 @@
 <!-- Latest compiled JavaScript -->
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<title>{% block title %}{% endblock %} - Flaskr</title>
+<title>{% block title %}{% endblock %}</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-<nav>
-  <div id="logo"> 
-    <img src="/static/logo.png"> 
+<nav class="nav_bar">
+  <div id="logo">
+    <img src="/static/logo.png">
   </div> 
   <z style="text-align:left;">{{ g.user['username'] }}</z>
   <h1></h1>
@@ -56,4 +56,11 @@
     <div class="flash">{{ message }}</div>
   {% endfor %}
   {% block content %}{% endblock %}
+  <div class="footer">
+      <li><a href="#">@ MMXIX</a>
+      <li><a href="#">Terms</a>
+      <li><a href="#">Privacy</a>
+      <li><a href="#">Cookies</a>
+      <li><a href="#">Accessibility</a>
+  </div>
 </section>
