@@ -16,5 +16,6 @@ CREATE TABLE post (
   body TEXT NOT NULL,
   body2 TEXT NOT NULL,
   module,
+  topic,
   FOREIGN KEY (author_id) REFERENCES user (id)
 );
