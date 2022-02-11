@@ -41,6 +41,9 @@
         <path fill-rule="evenodd" d="M11 7.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5z"/>
       </svg>
       <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
+    {% else %}
+      <li><a href="{{ url_for('auth.admin') }}">Register</a>
+      <li><a href="{{ url_for('auth.login') }}">Login</a>
     {% endif %}
     
   </ul>
