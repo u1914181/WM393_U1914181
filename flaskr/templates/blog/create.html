@@ -10,6 +10,12 @@
     <input name="title" id="title" value="{{ request.form['title'] }}" required>
     <label for="body">Body</label>
     <textarea name="body" id="body">{{ request.form['body'] }}</textarea>
+    <select class="form-control" id="rating" name="rating">
+      <option value="WM393">WM393</option>
+      <option value="WM380">WM380</option>
+      <option value="WM274" selected>WM274</option>
+      <option value="WM275">WM275</option>
+  </select>
     <input type=file name=file>
     <input type="submit" value=Upload>
   </form>
