@@ -8,6 +8,9 @@ from werkzeug.utils import secure_filename
 import os
 
 bp = Blueprint('blog', __name__)
+@bp.route('/blank')
+def blank_board():
+    return 'This board has been completed by another member of the team and therefore is not included in this project.'
 
 
 @bp.route('/')
