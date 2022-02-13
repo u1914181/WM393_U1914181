@@ -1,9 +1,16 @@
+<!-- This html template extends from base.html which means:
+it acts as a frame or a base for all pages in the application.-->
 {% extends 'base.html' %}
 
+<!-- The header block consists of the title.
+This appears within the h1 tag as it a HTML heading tag that indicates
+it is the main topic on a web page. The h1 tag stands out on the page.-->
 {% block header %}
   <h1>{% block title %}Download Files{% endblock %}</h1>
 {% endblock %}
 
+<!-- The content block consists of a download button for a student to download
+the resource.-->
 {% block content %}
          <a href="/return-files/{{value}}" target="blank"><button class='btn btn-default'>Download</button></a>
 {% endblock %}
