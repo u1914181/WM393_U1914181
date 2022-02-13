@@ -23,8 +23,12 @@ def edit_board():
     return 'Board can be edited by: --> Editing resource board uploads using the edit button found on the main board. --> Users can be added providing the users knows the administrative logins.'
 
 
-@bp.route('/')
+@bp.route('/', methods=('GET', 'POST'))
 def index():
+    if request.method == 'POST':
+        module = request.form['module']
+        print(module)
+        return redirect(url_for('blog.rating', module=module))
     db = get_db()
     posts = db.execute(
         'SELECT p.id, title, body, body2, module, topic, created, author_id, username'
@@ -34,8 +38,12 @@ def index():
     return render_template('blog/index.html', posts=posts)
 
 
-@bp.route('/student_index')
+@bp.route('/student_index', methods=('GET', 'POST'))
 def student_index():
+    if request.method == 'POST':
+        module_student = request.form['module_student']
+        print(module_student)
+        return redirect(url_for('blog.rating_student', module_student=module_student))
     db = get_db()
     posts = db.execute(
         'SELECT p.id, title, body, body2, module, topic, created, author_id, username'
@@ -178,3 +186,29 @@ def delete(id):
     db.execute('DELETE FROM post WHERE id = ?', (id,))
     db.commit()
     return redirect(url_for('blog.index'))
+
+
+@bp.route('/<module>', methods=('GET', 'POST'))
+@login_required
+def rating(module):
+    db = get_db()
+    posts = db.execute(
+        'SELECT p.id, title, body, body2, module, topic, created, author_id, username'
+        ' FROM post p JOIN user u ON p.author_id = u.id'
+        ' WHERE module = ?',
+        (module,)
+    ).fetchall()
+    return render_template('blog/results.html', posts=posts)
+
+
+@bp.route('/student_index/<module_student>', methods=('GET', 'POST'))
+@login_required
+def rating_student(module_student):
+    db = get_db()
+    posts = db.execute(
+        'SELECT p.id, title, body, body2, module, topic, created, author_id, username'
+        ' FROM post p JOIN user u ON p.author_id = u.id'
+        ' WHERE module = ?',
+        (module_student,)
+    ).fetchall()
+    return render_template('blog/results_student.html', posts=posts)
