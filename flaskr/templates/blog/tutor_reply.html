@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Reply to Comment{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post" enctype="multipart/form-data">>
+    <label for="title">Title:</label>
+    <div name="title" id="title">{{comments['title']}}</div>
+    <label for="body">Body:</label>
+    <div name="body" id="body">{{comments['body']}}</div>
+    <label for="module">Module:</label>
+    <div name="module" id="module">{{comments['module']}}</div>
+    <label for="priority">Priority:</label>
+    <div name="priority" id="priority">{{comments['priority']}}</div>
+    <label for="reply">Reply</label>
+    <textarea name="reply" id="reply">{{ request.form['reply'] }}</textarea>
+    <input type="submit" value=Upload>
+  </form>
+{% endblock %}
