@@ -1,15 +1,25 @@
+<!-- This html template extends from base.html which means:
+it acts as a frame or a base for all pages in the application.-->
 {% extends 'base.html' %}
 
+<!-- The header block consists of the title.
+This appears within the h1 tag as it a HTML heading tag that indicates
+it is the main topic on a web page. The h1 tag stands out on the page.-->
 {% block header %}
   <h1>{% block title %}Upload Documents{% endblock %}</h1>
 {% endblock %}
 
+<!-- The content block consists of areas in which the tutor is able to enter information
+about the resource that they are uploading including the title, body of text, module, topic and filename.
+There is also a submit button at the end.-->
 {% block content %}
   <form action="" method=post enctype=multipart/form-data>
     <label for="title">Title</label>
     <input name="title" id="title" value="{{ request.form['title'] }}" required>
     <label for="body">Body</label>
     <textarea name="body" id="body">{{ request.form['body'] }}</textarea>
+    <!--The select tag is used to provide a drop down menu in which the user can 
+    make a selection regarding the module they have an upload for.-->
     <select class="form-control" id="rating" name="rating">
       <option value="WM393">WM393</option>
       <option value="WM380">WM380</option>
