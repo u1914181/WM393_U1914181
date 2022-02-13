@@ -48,9 +48,7 @@
           <h1>{{ post['title'] }}</h1>
           <div class="about">By {{ post['username'] }} on {{ post['created'].strftime('%Y-%m-%d') }}</div>
         </div>
-        {% if g.user['id'] == post['author_id'] %}
-          <a class="action" href="{{ url_for('blog.update', id=post['id']) }}">Edit</a>
-        {% endif %}
+          <a class="action" href="{{ url_for('blog.comment', id=post['id']) }}">Comment</a>
       </header>
       <a class="action" href="{{ url_for('blog.download_file', filename=post['body']) }}">{{ post['body'] }}</a>
       <p class="about">Information about resource:  {{ post['body2'] }}</p>
