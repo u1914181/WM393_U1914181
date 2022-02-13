@@ -1,30 +1,47 @@
 {% extends 'student_base.html' %}
 
 {% block header %}
-  <h1>{% block title %}Posts{% endblock %}</h1>
+
+  <h1>{% block title %}University of Warwick WMGTSS{% endblock %}</h1>
+  {% if g.user %}
+  {% endif %}
 {% endblock %}
 
 {% block content %}
 <form method="post" > 
-  <div class="center">
-    <p>
-        <a href="blank"><button type="button" class="swd-button">Lecture</button></a>
-        <a href="blank"><button type="button" class="swd-button">Calendar</button></a>
-        <a href="blank"><button type="button" class="swd-button">Quiz</button></a>
-    </p>
-    <p>
-        <a href="blank"><button type="button" class="swd-button">Q and A</button></a>
-        <a href=""><button type="button" class="swd-button">Resource</button></a>
-        <a href="blank"><button type="button" class="swd-button">Notice</button></a>
-    </p>
-  </div>
-  </form>
-  <form></form>
-  <form></form>
-  <form></form>
-  <form></form>
-  <form></form>
-  {% for post in posts %}
+<div class="right">
+  <p>
+    
+    <select class="module_select" id="module_student" name="module_student">
+      <option value="WM393" href="blank">WM393</option>
+      <option value="WM380">WM380</option>
+      <option value="WM274" selected>WM274</option>
+      <option value="WM275">WM275</option>
+   
+  </select>
+  <button>Compare!</button>
+  </p>
+</div>
+<div class="btn text-center">
+  <p>
+      <a href="blank"><button type="button" class="swd-button">Lecture</button></a>
+      <a href="blank"><button type="button" class="swd-button">Calendar</button></a>
+      <a href="blank"><button type="button" class="swd-button">Quiz</button></a>
+  </p>
+</div>
+<div class="btn text-center">
+  <p>
+      <a href="blank"><button type="button" class="swd-button">Q and A</button></a>
+      <a href=""><button type="button" class="swd-button">Resource</button></a>
+      <a href="blank"><button type="button" class="swd-button">Notice</button></a>
+  </p>
+</div>
+<div class="btn text-center">
+  <h1>Good Morning {{g.user['username']}}, Welcome to the Resource Board</h1>
+</div>
+</form>
+
+{% for post in posts %}
     <article class="post">
       <header>
         <div>
@@ -36,7 +53,9 @@
         {% endif %}
       </header>
       <a class="action" href="{{ url_for('blog.download_file', filename=post['body']) }}">{{ post['body'] }}</a>
-      <p class="about">By {{ post['body2'] }}</p>
+      <p class="about">Information about resource:  {{ post['body2'] }}</p>
+      <p class="about">Module:  {{ post['module'] }}</p>
+      <p class="about">Topic:  {{ post['topic'] }}</p>
     </article>
     {% if not loop.last %}
       <hr>
