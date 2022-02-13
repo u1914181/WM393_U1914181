@@ -1,9 +1,16 @@
+<!-- This html template extends from base.html which means:
+it acts as a frame or a base for all pages in the application.-->
 {% extends 'base.html' %}
-
+<!-- The header block consists of the title.
+This appears within the h1 tag as it a HTML heading tag that indicates
+it is the main topic on a web page. The h1 tag stands out on the page.
+It is dynamic to have the title of the post within the title.-->
 {% block header %}
   <h1>{% block title %}Edit "{{ post['title'] }}"{% endblock %}</h1>
 {% endblock %}
-
+<!-- The content block consists of text areas in which the tutor is able to update
+the title and the body of text associated with an uploaded resource. They are
+also able to delete an uploaded resource.-->
 {% block content %}
   <form method="post" enctype="multipart/form-data">>
     <label for="title">Title</label>
@@ -13,6 +20,7 @@
     <textarea name="body" id="body">{{ request.form['body2'] or post['body2'] }}</textarea>
     <input type="file" name="file" value="{{ request.files['file'] }}">
     <input type="submit" value="Save">
+    <!-- The form method defines a HTML form to enter inputs by the user.-->
   </form>
   <hr>
   <form action="{{ url_for('blog.delete', id=post['id']) }}" method="post">
