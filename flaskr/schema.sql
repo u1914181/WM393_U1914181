@@ -19,3 +19,16 @@ CREATE TABLE post (
   topic,
   FOREIGN KEY (author_id) REFERENCES user (id)
 );
+
+
+CREATE TABLE comments (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  author_id INTEGER NOT NULL,
+  created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  title TEXT NOT NULL,
+  body TEXT NOT NULL,
+  module,
+  priority,
+  reply,
+  FOREIGN KEY (author_id) REFERENCES user (id)
+);
