@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block header %}
+
+  <h1>{% block title %}University of Warwick WMGTSS{% endblock %}</h1>
+  {% if g.user %}
+    <a class="action" href="{{ url_for('blog.create') }}">New</a>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+<form method="post" > 
+
+<div class="btn text-center">
+  <p>
+      <a href="blank"><button type="button" class="swd-button">Lecture</button></a>
+      <a href="blank"><button type="button" class="swd-button">Calendar</button></a>
+      <a href="blank"><button type="button" class="swd-button">Quiz</button></a>
+  </p>
+</div>
+<div class="btn text-center">
+  <p>
+      <a href="blank"><button type="button" class="swd-button">Q and A</button></a>
+      <a href=""><button type="button" class="swd-button">Resource</button></a>
+      <a href="blank"><button type="button" class="swd-button">Notice</button></a>
+  </p>
+</div>
+<div class="btn text-center">
+  <h1>Good Morning {{g.user['username']}}, Welcome to the Resource Board</h1>
+</div>
+<div class="btn text-center">
+  <p>
+    <a href="create"><button type="button" class="swd-button">Create Board</button></a>
+    <a href="edit"><button type="button" class="swd-button">Edit Board</button></a>
+    <a href="create"><button type="button" class="swd-button">Manage Board</button></a>
+</p>
+</div>
+</form>
+
+{% for post in posts %}
+    <article class="post">
+      <header>
+        <div>
+          <h1>{{ post['title'] }}</h1>
+          <div class="about">By {{ post['username'] }} on {{ post['created'].strftime('%Y-%m-%d') }}</div>
+        </div>
+        {% if g.user['id'] == post['author_id'] %}
+          <a class="action" href="{{ url_for('blog.update', id=post['id']) }}">Edit</a>
+        {% endif %}
+      </header>
+      <a class="action" href="{{ url_for('blog.download_file', filename=post['body']) }}">{{ post['body'] }}</a>
+      <p class="about">Information about resource:  {{ post['body2'] }}</p>
+      <p class="about">Module:  {{ post['module'] }}</p>
+      <p class="about">Topic:  {{ post['topic'] }}</p>
+    </article>
+    {% if not loop.last %}
+      <hr>
+    {% endif %}
+  {% endfor %}
+{% endblock %}
