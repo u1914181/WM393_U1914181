@@ -1,21 +1,35 @@
-{% extends 'base.html' %}
+<!-- This html template extends from base.html which means:
+it acts as a frame or a base for all pages in the application.-->
+{% extends 'student_base.html' %}
 
+<!-- The header block consists of the title.
+This appears within the h1 tag as it a HTML heading tag that indicates
+it is the main topic on a web page. The h1 tag stands out on the page.-->
 {% block header %}
   <h1>{% block title %}Add a Comment{% endblock %}</h1>
 {% endblock %}
 
+<!-- The content block consists of areas in which the student is able to input
+information about their comment including the title, body of text, module and priority
+level. There is also a submit button at the end.-->
 {% block content %}
   <form action="" method=post enctype=multipart/form-data>
     <label for="title">Title</label>
+    <!-- The title is required as this is needed for the database and to differentiate
+    the comments that are saved to the comments page.-->
     <input name="title" id="title" value="{{ request.form['title'] }}" required>
     <label for="body">Body</label>
     <textarea name="body" id="body">{{ request.form['body'] }}</textarea>
+    <!--The select tag is used to provide a drop down menu in which the user can 
+    make a selection regarding the module they have a comment for.-->
     <select class="form-control" id="module" name="module">
       <option value="WM393">WM393</option>
       <option value="WM380">WM380</option>
       <option value="WM274" selected>WM274</option>
       <option value="WM275">WM275</option>
   </select>
+  <!--The select tag is used to provide a drop down menu in which the user can 
+    make a selection regarding the priority level of their comment.-->
   <select class="form-control" id="priority" name="priority">
     <option value="HIGH">HIGH</option>
     <option value="MEDIUM">MEDIUM</option>
