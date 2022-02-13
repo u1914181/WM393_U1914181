@@ -1,0 +1,49 @@
+{% extends 'student_base.html' %}
+
+{% block header %}
+
+  <h1>{% block title %}University of Warwick WMGTSS{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<form method="post" > 
+
+<div class="btn text-center">
+  <p>
+      <a href="blank"><button type="button" class="swd-button">Lecture</button></a>
+      <a href="blank"><button type="button" class="swd-button">Calendar</button></a>
+      <a href="blank"><button type="button" class="swd-button">Quiz</button></a>
+  </p>
+</div>
+<div class="btn text-center">
+  <p>
+      <a href="blank"><button type="button" class="swd-button">Q and A</button></a>
+      <a href=""><button type="button" class="swd-button">Resource</button></a>
+      <a href="blank"><button type="button" class="swd-button">Notice</button></a>
+  </p>
+</div>
+<div class="btn text-center">
+  <h1>Good Morning {{g.user['username']}}, Welcome to the Resource Board</h1>
+</div>
+
+</form>
+
+{% for comment in comments %}
+    <article class="comment">
+      <header>
+        <div>
+          <h1>{{ comment['title'] }}</h1>
+          <div class="about">Comment ID {{ comment['id'] }}</div>
+          <div class="about">By {{ comment['username'] }} on {{ comment['created'].strftime('%Y-%m-%d') }}</div>
+        </div>
+      </header>
+      <p class="about">Comment:  {{ comment['body'] }}</p>
+      <p class="about">Module:  {{ comment['module'] }}</p>
+      <p class="about">Priority:  {{ comment['priority'] }}</p>
+      <p class="about">Reply:  {{ comment['reply'] }}</p>
+    </article>
+    {% if not loop.last %}
+      <hr>
+    {% endif %}
+  {% endfor %}
+{% endblock %}
