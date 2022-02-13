@@ -7,6 +7,7 @@ To run the code:
 
 - Clone the repository or download all files.
 - Run the following commands in the terminal:
+- flask init-db
 - set FLASK_APP=flaskr
 - set FLASK_ENV=development
 - flask run
