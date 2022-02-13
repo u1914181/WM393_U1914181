@@ -1,10 +1,17 @@
+<!-- This html template extends from base.html which means:
+it acts as a frame or a base for all pages in the application.-->
 {% extends 'student_base.html' %}
 
+<!-- The header block consists of the title.
+This appears within the h1 tag as it a HTML heading tag that indicates
+it is the main topic on a web page. The h1 tag stands out on the page.-->
 {% block header %}
 
   <h1>{% block title %}University of Warwick WMGTSS{% endblock %}</h1>
 {% endblock %}
-
+<!-- The content block consts of 6 buttons at the top that navigate to
+the other boards (if that functionality had been applied to this assessment)
+A welcome message is then displayed below these buttons.-->
 {% block content %}
 <form method="post" > 
 
@@ -22,13 +29,25 @@
       <a href="blank"><button type="button" class="swd-button">Notice</button></a>
   </p>
 </div>
+<!-- The div tags are elements that are used to define parts of the document.
+The welcome message is identifiable using its class name. The welcome message it
+personalised as it collects the username directly from the database. This means it is also
+dynamic.-->
 <div class="btn text-center">
   <h1>Good Morning {{g.user['username']}}, Welcome to the Resource Board</h1>
 </div>
 
 </form>
-
+<!-- This section retrieves data from the comments table of the SQL database to display
+within the main comments page. The title, comment ID, comment author, datetime comment was submitted,
+comment, mdoule, priority and reply are all featured within the comment page. 
+The p tag represents a paragraph. Paragraphs are block level elements therefore all these different
+elements will be shown on different lines.-->
 {% for comment in comments %}
+<!-- The article tag is similar to the section and header tags in that it is used to contain
+information that will be distributed independantly fromt the rest of the site.
+This was used as it dynamically collects the information that is stored in the SQL database and shows
+the information about each resource seperately.-->
     <article class="comment">
       <header>
         <div>
@@ -43,6 +62,7 @@
       <p class="about">Reply:  {{ comment['reply'] }}</p>
     </article>
     {% if not loop.last %}
+    <!-- The hr tag displays a horizontal line to seperate the different uploaded resources.-->
       <hr>
     {% endif %}
   {% endfor %}
