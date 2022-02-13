@@ -1,10 +1,20 @@
+<!-- This html template extends from base.html which means:
+it acts as a frame or a base for all pages in the application.-->
 {% extends 'base.html' %}
 
+<!-- The header block consists of the title.
+This appears within the h1 tag as it a HTML heading tag that indicates
+it is the main topic on a web page. The h1 tag stands out on the page.-->
 {% block header %}
   <h1>{% block title %}Enter Credentials{% endblock %}</h1>
 {% endblock %}
 
+<!-- The content block consists of a username label/field,
+a password label/field and a submit button. The user has to enter
+the correct username and password to gain access to the resource
+board.-->
 {% block content %}
+<!-- The form method defines a HTML form to enter inputs by the user.-->
   <form method="post">
     <label for="username">Username:</label>
     <input name="username" id="username" required>
