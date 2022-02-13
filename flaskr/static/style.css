@@ -4,7 +4,8 @@ h1 { font-family: Segoe UI Light; color: white; margin: 1rem 0; align-self: cent
 a { color: #ffffff; }
 b { color: red; align-self: center; text-align: center; align-content: center;}
 hr { border: none; border-top: 1px solid lightgray; }
-nav { background: linear-gradient(#044d8a,#1f74b9); display: flex; align-items: center; padding: 0 0.5rem; text-align: center;  border-radius: 15px 15px 0px 0px;}
+.nav_bar { background: linear-gradient(#044d8a,#1f74b9); display: flex; align-items: center; padding: 0 0.5rem; text-align: center;  border-radius: 15px 15px 0px 0px;}
+.footer { background: linear-gradient(#044d8a,#1f74b9); display: flex; align-items: center; padding: 0 0rem; text-align: center;  border-radius: 15px 15px 15px 15px; width: 100%;}
 nav h1 { flex: auto; margin: 0; }
 nav h1 a { text-decoration: none; padding: 0.25rem 0.5rem; }
 nav ul  { display: flex; list-style: none; margin: 0; padding: 0; }
@@ -72,7 +73,7 @@ align-items: left; padding: 0 0.5rem; text-align: center;
     font-family: Segoe UI Light;
 }
 .right {
-    margin-left:95%;
+    margin-left:85%;
     margin-bottom: -50px;
     margin-top: 0px;
     color: white;
