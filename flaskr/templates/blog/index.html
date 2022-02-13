@@ -1,5 +1,10 @@
+<!-- This html template extends from base.html which means:
+it acts as a frame or a base for all pages in the application.-->
 {% extends 'base.html' %}
 
+<!-- The header block consists of the title.
+This appears within the h1 tag as it a HTML heading tag that indicates
+it is the main topic on a web page. The h1 tag stands out on the page.-->
 {% block header %}
 
   <h1>{% block title %}University of Warwick WMGTSS{% endblock %}</h1>
@@ -8,6 +13,8 @@
   {% endif %}
 {% endblock %}
 
+<!-- The content block consists of a dropdown menu within the select tag
+in which the user is able to filter the resources by module.-->
 {% block content %}
 <form method="post" > 
 <div class="right">
@@ -22,9 +29,13 @@
   </select>
   <button>Compare!</button>
   </p>
+  <!-- The div tags are elements that are used to define parts of the document.-->
 </div>
 <div class="btn text-center">
   <p>
+      <!-- The content block consts of 6 buttons at the top that navigate to
+      the other boards (if that functionality had been applied to this assessment)
+      A welcome message is then displayed below these buttons.-->
       <a href="blank"><button type="button" class="swd-button">Lecture</button></a>
       <a href="blank"><button type="button" class="swd-button">Calendar</button></a>
       <a href="blank"><button type="button" class="swd-button">Quiz</button></a>
@@ -42,6 +53,10 @@
 </div>
 <div class="btn text-center">
   <p>
+    <!-- The content block also has 3 further buttons for uploading a resource,
+    editing a board and managing a board. The editing and managing of boards is something
+    that is included within the future works section of the project yet has not been covered
+    within this assessment.-->
     <a href="create"><button type="button" class="swd-button">Create Board</button></a>
     <a href="edit"><button type="button" class="swd-button">Edit Board</button></a>
     <a href="create"><button type="button" class="swd-button">Manage Board</button></a>
@@ -50,6 +65,16 @@
 </form>
 
 {% for post in posts %}
+<!-- This section retrieves data from the posts table of the SQL database to display
+within the main resource board page. The title, post ID, post author, datetime post was submitted,
+body of text, module, topic are all featured within the main resource page. 
+The p tag represents a paragraph. Paragraphs are block level elements therefore all these different
+elements will be shown on different lines.-->
+{% for comment in comments %}
+<!-- The article tag is similar to the section and header tags in that it is used to contain
+information that will be distributed independantly fromt the rest of the site.
+This was used as it dynamically collects the information that is stored in the SQL database and shows
+the information about each resource seperately.-->
     <article class="post">
       <header>
         <div>
