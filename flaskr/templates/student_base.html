@@ -3,31 +3,31 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 
-    
-
 <!-- Latest compiled and minified CSS -->
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
-
 
 <!-- jQuery library -->
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-
-
 <!-- Popper JS -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
-
-
 <!-- Latest compiled JavaScript -->
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!--This file acts as a frame or a base for all pages in the application.
+This section will be filled with the title in all other html files.
+The css stylesheet is a language used for describing the presentation of the application
+which is written in the markup language HTML. CSS describes how HTML elements are to be
+displayed on the screen.-->
 <title>{% block title %}{% endblock %}</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<!-- The nav tag is for defining the navigational section within the page. There is a WMG
+logo within the top left of the navbar. The username is to the right of this. As this is the base file
+for the student view, there is an icon in the top right of the navbar of a student.-->
 <nav class="nav_bar">
   <div id="logo">
     <img src="/static/logo.png">
@@ -39,8 +39,10 @@
       <svg xmlns="http://www.w3.org/2000/svg" width="56" height="32" fill="white" class="bi bi-person" viewBox="0 0 16 16">
         <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
       </svg>
+      <!-- When the tutor is logged in, there will be a button to logout.-->
       <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
     {% else %}
+    <!-- When the tutor is logged out, there will be a button to login.-->
       <li><a href="{{ url_for('auth.login') }}">Login</a>
     {% endif %}
     
@@ -50,10 +52,13 @@
   <header>
     {% block header %}{% endblock %}
   </header>
+  <!--This section defines the messages that will flash onto the screen such as wrong username.-->
   {% for message in get_flashed_messages() %}
     <div class="flash">{{ message }}</div>
   {% endfor %}
   {% block content %}{% endblock %}
+  <!-- This section describes the footer class that consists of some basic links that do not direct
+  the user to any other pages as the functionality for this is not covered in this assessment-->
   <div class="footer">
       <li><a href="#">@ MMXIX</a>
       <li><a href="#">Terms</a>
