@@ -212,3 +212,90 @@ def rating_student(module_student):
         (module_student,)
     ).fetchall()
     return render_template('blog/results_student.html', posts=posts)
+
+
+@bp.route('/<int:id>/comment', methods=('GET', 'POST'))
+@login_required
+def comment(id):
+    if request.method == 'POST':
+        title = request.form['title']
+        body = request.form['body']
+        module = request.form['module']
+        priority = request.form['priority']
+        error = None
+
+        if not title:
+            error = 'Title is required.'
+
+        if error is not None:
+            flash(error)
+        else:
+            db = get_db()
+            db.execute(
+                'INSERT INTO comments (title, body, author_id, module, priority)'
+                ' VALUES (?, ?, ?, ?, ?)',
+                (title, body, g.user['id'], module, priority)
+            )
+            db.commit()
+
+            return redirect(url_for('blog.comment_page'))
+    return render_template('blog/comment.html')
+
+
+@bp.route('/comment_page', methods=('GET', 'POST'))
+def comment_page():
+    db = get_db()
+    comments = db.execute(
+        'SELECT c.id, title, body, module, priority, created, author_id, username, reply'
+        ' FROM comments c JOIN user u ON c.author_id = u.id'
+        ' ORDER BY created DESC'
+    ).fetchall()
+    return render_template('blog/comment_page.html', comments=comments)
+
+
+@bp.route('/tutor_comment_page', methods=('GET', 'POST'))
+def tutor_comment_page():
+    db = get_db()
+    comments = db.execute(
+        'SELECT c.id, title, body, module, priority, created, author_id, username, reply'
+        ' FROM comments c JOIN user u ON c.author_id = u.id'
+        ' ORDER BY created DESC'
+    ).fetchall()
+    return render_template('blog/tutor_comment_page.html', comments=comments)
+
+
+def get_comment(id):
+    comments = get_db().execute(
+        'SELECT id, title, body, module, priority, created, author_id'
+        ' FROM comments'
+        ' WHERE id = ?',
+        (id,)
+    ).fetchone()
+
+    return comments
+
+
+@bp.route('/<int:id>/tutor_reply', methods=('GET', 'POST'))
+@login_required
+def tutor_reply(id):
+    comments = get_comment(id)
+    print(comments['title'])
+
+    if request.method == 'POST':
+        reply = request.form['reply']
+        print(reply)
+        error = None
+
+        if error is not None:
+            flash(error)
+        else:
+            db = get_db()
+            db.execute(
+                'UPDATE comments SET reply = ?'
+                ' WHERE id = ?',
+                (reply, id,)
+            )
+            db.commit()
+            return redirect(url_for('blog.tutor_comment_page'))
+
+    return render_template('blog/tutor_reply.html', comments=comments)
