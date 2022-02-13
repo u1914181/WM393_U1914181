@@ -58,6 +58,7 @@
         </div>
         {% if g.user['id'] == post['author_id'] %}
           <a class="action" href="{{ url_for('blog.update', id=post['id']) }}">Edit</a>
+          <a class="action" href="{{ url_for('blog.tutor_comment_page') }}">Check Comments</a>
         {% endif %}
       </header>
       <a class="action" href="{{ url_for('blog.download_file', filename=post['body']) }}">{{ post['body'] }}</a>
