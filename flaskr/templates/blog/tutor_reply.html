@@ -1,9 +1,15 @@
+<!-- This html template extends from base.html which means:
+it acts as a frame or a base for all pages in the application.-->
 {% extends 'base.html' %}
-
+<!-- The header block consists of the title.
+This appears within the h1 tag as it a HTML heading tag that indicates
+it is the main topic on a web page. The h1 tag stands out on the page.-->
 {% block header %}
   <h1>{% block title %}Reply to Comment{% endblock %}</h1>
 {% endblock %}
-
+<!-- The content block consists of areas in which the tutor is able
+to reply to a comment that has been submitted by a student. There is 
+also a submit button at the end.-->
 {% block content %}
   <form method="post" enctype="multipart/form-data">
     <label for="title">Title:</label>
